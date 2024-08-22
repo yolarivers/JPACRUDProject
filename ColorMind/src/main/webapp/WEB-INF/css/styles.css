@@ -1,0 +1,36 @@
+/* Custom styles for Color Mind */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.jumbotron h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+}
+
+.btn-primary {
+    background-color: #DC143C;
+    border-color: #DC143C;
+}
+
+footer {
+    background-color: #222;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+#colorPreview {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+}
