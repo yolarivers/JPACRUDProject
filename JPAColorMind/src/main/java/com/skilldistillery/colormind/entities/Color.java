@@ -97,5 +97,5 @@ public class Color {
 	}
 
     
-    // Getters and setters, equals, hashCode, toString methods...
+   
 }

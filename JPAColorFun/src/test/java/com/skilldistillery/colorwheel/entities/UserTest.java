@@ -13,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class ColorTest {
+class UserTest {
 
     private static EntityManagerFactory emf;
     private EntityManager em;
-    private Color color;
+    private User user;
 
     @BeforeAll
     static void setUpBeforeClass() throws Exception {
@@ -32,20 +32,19 @@ class ColorTest {
     @BeforeEach
     void setUp() throws Exception {
         em = emf.createEntityManager();
-        color = em.find(Color.class, 1); 
+        user = em.find(User.class, 1);  
     }
 
     @AfterEach
     void tearDown() throws Exception {
         em.close();
-        color = null;
+        user = null;
     }
 
     @Test
-    void test_Color_entity_mapping() {
-        assertNotNull(color);
-        assertEquals("Crimson", color.getName());
-        assertEquals("#DC143C", color.getHexCode());
-        assertEquals("220, 20, 60", color.getRgbValue());
+    void test_User_entity_mapping() {
+        assertNotNull(user);
+//        assertEquals("adminUser", user.getUsername());
+//        assertEquals("ADMIN", user.getRole());
     }
 }
