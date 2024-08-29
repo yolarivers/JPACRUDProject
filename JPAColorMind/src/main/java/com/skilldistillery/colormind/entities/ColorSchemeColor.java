@@ -11,28 +11,50 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "analogous_color")
-public class AnalogousColor {
+@Table(name = "color_scheme_color")
+public class ColorSchemeColor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "color_scheme_id")
+    private ColorScheme colorScheme;
+
+    @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
 
-    @ManyToOne
-    @JoinColumn(name = "analogous_color_id")
-    private Color analogousColor;
+    private int position;
 
-    // Getters and Setters
+  
+    public ColorSchemeColor() {
+        super();
+    }
+
+    public ColorSchemeColor(ColorScheme colorScheme, Color color, int position) {
+        this.colorScheme = colorScheme;
+        this.color = color;
+        this.position = position;
+    }
+
+
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ColorScheme getColorScheme() {
+        return colorScheme;
+    }
+
+    public void setColorScheme(ColorScheme colorScheme) {
+        this.colorScheme = colorScheme;
     }
 
     public Color getColor() {
@@ -43,15 +65,16 @@ public class AnalogousColor {
         this.color = color;
     }
 
-    public Color getAnalogousColor() {
-        return analogousColor;
+    public int getPosition() {
+        return position;
     }
 
-    public void setAnalogousColor(Color analogousColor) {
-        this.analogousColor = analogousColor;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
-    // Equals, HashCode, and ToString methods
+    
+
     @Override
     public int hashCode() {
         return Objects.hash(id);
@@ -61,16 +84,16 @@ public class AnalogousColor {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        AnalogousColor other = (AnalogousColor) obj;
+        ColorSchemeColor other = (ColorSchemeColor) obj;
         return id == other.id;
     }
 
+   
+
     @Override
     public String toString() {
-        return "AnalogousColor [id=" + id + ", color=" + color + ", analogousColor=" + analogousColor + "]";
+        return "ColorSchemeColor [id=" + id + ", colorScheme=" + colorScheme + ", color=" + color + ", position=" + position + "]";
     }
 }
