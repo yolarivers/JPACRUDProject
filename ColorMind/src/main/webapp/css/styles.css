@@ -1,17 +1,15 @@
-/* Custom styles for Color Mind */
-/* Custom Bootstrap theme for Color Mind */
 
 
 
 
-/* Body */
+
 body {
     font-family: 'Verdana', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
 }
 
-/* Navbar */
+
 .navbar {
     background-color: var(--primary-color);
     font-weight: bold;
@@ -32,7 +30,6 @@ body {
     color: var(--accent-color);
 }
 
-/* Buttons */
 .btn-primary {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
@@ -45,7 +42,7 @@ body {
     border-color: var(--accent-color);
 }
 
-/* Card */
+
 .card {
     border: 2px solid var(--primary-color);
     border-radius: 10px;
@@ -62,7 +59,7 @@ body {
     background-color: var(--background-color);
 }
 
-/* Footer */
+
 .footer {
     background-color: var(--primary-color);
     color: var(--background-color);
@@ -75,14 +72,12 @@ body {
     font-weight: bold;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
     color: var(--primary-color);
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
 }
 
-/* Forms */
 .form-control {
     border: 2px solid var(--primary-color);
     border-radius: 5px;
@@ -91,7 +86,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-/* Links */
+
 a {
     color: var(--secondary-color);
     font-weight: bold;
@@ -102,7 +97,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* Background Elements */
+
 .bg-primary {
     background-color: var(--primary-color) !important;
     color: var(--background-color) !important;
@@ -113,7 +108,7 @@ a:hover {
     color: var(--background-color) !important;
 }
 
-/* Custom Sections */
+
 .section-title {
     font-size: 2.5rem;
     color: var(--secondary-color);
@@ -130,7 +125,7 @@ a:hover {
     background-color: var(--accent-color);
 }
 
-/* Custom Utilities */
+
 .text-primary {
     color: var(--primary-color) !important;
 }

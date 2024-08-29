@@ -1,71 +1,57 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Color</title>
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Create Color - Color Mind</title>
+    <link href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/styles.css" rel="stylesheet">
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/">Color Mind</a>
+    </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="${pageContext.request.contextPath}/home.do">Color Mind</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/home.do">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/colors/list.do">Colors</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/schemes/list.do">Schemes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/about.do">About</a>
-            </li>
-        </ul>
+    <div class="container mt-5">
+        <h1>Create New Color</h1>
+        <form action="${pageContext.request.contextPath}/colors/create" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="color">Color Name:</label>
+                <input type="text" class="form-control" id="color" name="color" required>
+            </div>
+            <div class="form-group">
+                <label for="hexCode">Hex Code:</label>
+                <input type="text" class="form-control" id="hexCode" name="hexCode">
+            </div>
+            <div class="form-group">
+                <label for="rgbValue">RGB Value:</label>
+                <input type="text" class="form-control" id="rgbValue" name="rgbValue">
+            </div>
+            <div class="form-group">
+                <label for="complementaryColor">Complementary Color:</label>
+                <input type="text" class="form-control" id="complementaryColor" name="complementaryColor">
+            </div>
+            <div class="form-group">
+                <label for="analogousColors">Analogous Colors:</label>
+                <input type="text" class="form-control" id="analogousColors" name="analogousColors">
+            </div>
+            <div class="form-group">
+                <label for="imageFile">Upload Image:</label>
+                <input type="file" class="form-control-file" id="imageFile" name="imageFile">
+            </div>
+            <div class="form-group">
+                <label for="meaning">Meaning:</label>
+                <textarea class="form-control" id="meaning" name="meaning"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Color</button>
+        </form>
+        <a href="${pageContext.request.contextPath}/colors/list" class="btn btn-secondary mt-3">Back to List</a>
     </div>
-</nav>
 
-<div class="container mt-5">
-    <h1 class="display-4 text-center">Create New Color</h1>
-    
-    <form action="${pageContext.request.contextPath}/colors/create.do" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="name">Color Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="hexCode">Hex Code</label>
-            <input type="text" class="form-control" id="hexCode" name="hexCode" required>
-        </div>
-        <div class="form-group">
-            <label for="rgbValue">RGB Value</label>
-            <input type="text" class="form-control" id="rgbValue" name="rgbValue">
-        </div>
-        <div class="form-group">
-            <label for="imageFile">Color Image</label>
-            <input type="file" class="form-control-file" id="imageFile" name="imageFile">
-        </div>
-        <button type="submit" class="btn btn-primary">Create Color</button>
-    </form>
-</div>
-
-<footer class="footer bg-light mt-5 py-3">
-    <div class="container text-center">
-        <span class="text-muted">&copy; 2024 Color Mind. All rights reserved.</span>
-    </div>
-</footer>
-
-<!-- Bootstrap JS and dependencies -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 Color Mind. All rights reserved.</p>
+    </footer>
 </body>
 </html>

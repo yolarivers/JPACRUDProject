@@ -14,6 +14,7 @@ war {
 }
 
 
+
 group = 'com.skilldistillery'
 version = '0.0.1-SNAPSHOT'
 
@@ -33,6 +34,7 @@ repositories {
 
 dependencies {
 	implementation project(':JPAColorMind')
+	
 	
 	implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.0'
