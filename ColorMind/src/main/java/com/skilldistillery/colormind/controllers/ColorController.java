@@ -23,7 +23,7 @@ public class ColorController {
     private ColorDAO colorDAO;
 
     
-    @RequestMapping(path = "/home.do", method = RequestMethod.GET)
+    @RequestMapping(path = "home.do", method = RequestMethod.GET)
     public String home(Model model) {
         System.out.println("Home method called."); 
         return "home";

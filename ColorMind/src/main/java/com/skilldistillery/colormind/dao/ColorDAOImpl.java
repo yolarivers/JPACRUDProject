@@ -1,11 +1,15 @@
 package com.skilldistillery.colormind.dao;
 
 import java.util.List;
+
 import org.springframework.stereotype.Service;
+
+import com.skilldistillery.colormind.entities.Color;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-import com.skilldistillery.colormind.entities.Color;
+
 
 @Service
 @Transactional
@@ -35,12 +39,10 @@ public class ColorDAOImpl implements ColorDAO {
     public Color update(int colorId, Color color) {
         Color managedColor = em.find(Color.class, colorId);
         if (managedColor != null) {
-            managedColor.setColor(color.getColor());
+        	managedColor.setName(color.getName());
             managedColor.setHexCode(color.getHexCode());
             managedColor.setRgbValue(color.getRgbValue());
-            managedColor.setComplementaryColor(color.getComplementaryColor());
-            managedColor.setAnalogousColors(color.getAnalogousColors());
-            managedColor.setImageUrl(color.getImageUrl());
+            
             managedColor.setMeaning(color.getMeaning());
         }
         return managedColor;

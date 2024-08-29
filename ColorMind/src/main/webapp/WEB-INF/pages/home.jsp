@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Color Mind - Home</title>
+    <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
           crossorigin="anonymous">
@@ -40,21 +40,21 @@
         </div>
 
         <h2 class="mt-4">Create a New Color</h2>
-        <form:form action="${pageContext.request.contextPath}/colors/create.do" method="POST">
+        <form action="${pageContext.request.contextPath}/colors/create.do" method="POST">
             <div class="form-group">
                 <label for="name">Color Name:</label>
-                <form:input path="name" id="name" cssClass="form-control" required="true" />
+                <input path="name" id="name" cssClass="form-control" required="true" />
             </div>
             <div class="form-group">
                 <label for="hexCode">Hex Code:</label>
-                <form:input path="hexCode" id="hexCode" cssClass="form-control" required="true" />
+                <input path="hexCode" id="hexCode" cssClass="form-control" required="true" />
             </div>
             <div class="form-group">
                 <label for="rgbValue">RGB Value:</label>
-                <form:input path="rgbValue" id="rgbValue" cssClass="form-control" required="true" />
+                <input path="rgbValue" id="rgbValue" cssClass="form-control" required="true" />
             </div>
             <button type="submit" class="btn btn-success mt-3">Create Color</button>
-        </form:form>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 

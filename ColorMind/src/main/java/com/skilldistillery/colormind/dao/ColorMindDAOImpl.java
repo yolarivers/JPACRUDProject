@@ -37,7 +37,7 @@ public class ColorMindDAOImpl implements ColorMindDAO {
     public Color update(int colorId, Color color) {
         Color managedColor = em.find(Color.class, colorId);
         if (managedColor != null) {
-            managedColor.setColor(color.getColor());
+//            managedColor.setColor(color.getColor());
             managedColor.setHexCode(color.getHexCode());
             managedColor.setRgbValue(color.getRgbValue());
             managedColor.setMeaning(color.getMeaning());

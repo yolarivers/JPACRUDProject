@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Mind</title>
+    <title>Create Color</title>
     
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
@@ -19,8 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="home.do">Home</a>
-<!--                <a class="nav-link" href="${pageContext.request.contextPath}/home.do">Home</a>-->
+                <a class="nav-link" href="${pageContext.request.contextPath}/home.do">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/colors/list.do">Colors</a>
@@ -36,36 +34,27 @@
 </nav>
 
 <div class="container mt-5">
-    <h1 class="display-4 text-center">Welcome to Color Mind</h1>
-    <p class="lead text-center">Discover and create beautiful color schemes effortlessly.</p>
-
-    <!-- Login Form -->
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    Login
-                </div>
-                <div class="card-body">
-                    <form action="${pageContext.request.contextPath}/login.do" method="post">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    </form>
-                </div>
-            </div>
+    <h1 class="display-4 text-center">Create New Color</h1>
+    
+    <form action="${pageContext.request.contextPath}/colors/create.do" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Color Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
-    </div>
-
-    <div class="text-center mt-4">
-        <a href="${pageContext.request.contextPath}/register.do">Don't have an account? Register here.</a>
-    </div>
+        <div class="form-group">
+            <label for="hexCode">Hex Code</label>
+            <input type="text" class="form-control" id="hexCode" name="hexCode" required>
+        </div>
+        <div class="form-group">
+            <label for="rgbValue">RGB Value</label>
+            <input type="text" class="form-control" id="rgbValue" name="rgbValue">
+        </div>
+        <div class="form-group">
+            <label for="imageFile">Color Image</label>
+            <input type="file" class="form-control-file" id="imageFile" name="imageFile">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Color</button>
+    </form>
 </div>
 
 <footer class="footer bg-light mt-5 py-3">
