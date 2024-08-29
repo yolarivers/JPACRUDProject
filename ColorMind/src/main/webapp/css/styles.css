@@ -1,36 +1,144 @@
 /* Custom styles for Color Mind */
+/* Custom Bootstrap theme for Color Mind */
+
+
+
+
+/* Body */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Verdana', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Navbar */
+.navbar {
+    background-color: var(--primary-color);
+    font-weight: bold;
 }
 
 .navbar-brand {
+    color: var(--secondary-color);
+    font-size: 1.8rem;
+}
+
+.navbar-nav .nav-link {
+    color: var(--background-color);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--accent-color);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--background-color);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Card */
+.card {
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: var(--background-color);
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-.jumbotron {
-    background-color: #f8f9fa;
-    color: #333;
+.card-body {
+    background-color: var(--background-color);
 }
 
-.jumbotron h1 {
-    font-size: 3.5rem;
-    font-weight: 300;
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    padding: 20px 0;
+    font-size: 1rem;
 }
 
-.btn-primary {
-    background-color: #DC143C;
-    border-color: #DC143C;
+.footer span {
+    color: var(--secondary-color);
+    font-weight: bold;
 }
 
-footer {
-    background-color: #222;
-    color: #aaa;
-    font-size: 0.9rem;
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: bold;
 }
 
-#colorPreview {
+/* Forms */
+.form-control {
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+
+
+
+/* Links */
+a {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+/* Background Elements */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+    color: var(--background-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+    color: var(--background-color) !important;
+}
+
+/* Custom Sections */
+.section-title {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.color-preview {
     width: 100px;
     height: 100px;
-    border: 1px solid #000;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    margin: 10px auto;
+    background-color: var(--accent-color);
+}
+
+/* Custom Utilities */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.text-accent {
+    color: var(--accent-color) !important;
 }

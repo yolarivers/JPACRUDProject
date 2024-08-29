@@ -1,81 +1,98 @@
 package com.skilldistillery.colormind.controllers;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.skilldistillery.colormind.dao.ColorDAO;
 import com.skilldistillery.colormind.entities.Color;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("/colors")
 public class ColorController {
 
     @Autowired
     private ColorDAO colorDAO;
 
-    @GetMapping("/list")
-    public String listColors(Model model) {
+    
+    @RequestMapping(path = "/home.do", method = RequestMethod.GET)
+    public String home(Model model) {
+        System.out.println("Home method called."); 
+        return "home";
+    }
+
+  
+    @RequestMapping(path = "/colors/list.do", method = RequestMethod.GET)
+    public String listColors(Model model, HttpSession session) {
         List<Color> colors = colorDAO.findAll();
         model.addAttribute("colors", colors);
-        return "list";
+        session.setAttribute("colorList", colors); 
+        System.out.println("List Colors method called with " + colors.size() + " colors."); 
+        return "colors";  
     }
 
-    @GetMapping("/create")
-    public String createColorForm(Model model) {
-        model.addAttribute("color", new Color());
-        return "create";
+    
+    @RequestMapping(path = "/schemes/list.do", method = RequestMethod.GET)
+    public String listSchemes(Model model, HttpSession session) {
+        System.out.println("List Schemes method called."); 
+        return "schemes";  
     }
 
-    @PostMapping("/create")
-    public String createColor(@ModelAttribute Color color, @RequestParam("imageFile") MultipartFile imageFile) {
-        if (!imageFile.isEmpty()) {
-            try {
-                String imagePath = saveImage(imageFile);
-                color.setImageUrl(imagePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    
+    @RequestMapping(path = "/about.do", method = RequestMethod.GET)
+    public String about() {
+        System.out.println("About method called."); 
+        return "about";  
+    }
+
+    
+    @RequestMapping(path = "/colors/create.do", method = RequestMethod.POST)
+    public String createColor(@RequestParam("name") String name, 
+                              @RequestParam("hexCode") String hexCode, 
+                              @RequestParam("rgbValue") String rgbValue, 
+                              HttpSession session) {
+        Color newColor = new Color();
+        newColor.setName(name);
+        newColor.setHexCode(hexCode);
+        newColor.setRgbValue(rgbValue);
+
+        colorDAO.create(newColor);
+        
+        @SuppressWarnings("unchecked")
+        List<Color> colorList = (List<Color>) session.getAttribute("colorList");
+        if (colorList != null) {
+            colorList.add(newColor);
+        } else {
+            colorList = new ArrayList<>();
+            colorList.add(newColor);
+            session.setAttribute("colorList", colorList); 
         }
-        colorDAO.create(color);
-        return "redirect:/colors/list";
+
+        System.out.println("Create Color method called. Color: " + newColor); 
+        return "redirect:/colors/list.do";
     }
 
-    @GetMapping("/update")
-    public String updateColorForm(@RequestParam int id, Model model) {
-        Color color = colorDAO.findById(id);
-        model.addAttribute("color", color);
-        return "update";
+    
+    @RequestMapping(path = "/clearColors.do", method = RequestMethod.GET)
+    public String clearColorList(HttpSession session) {
+        session.removeAttribute("colorList");
+        System.out.println("Color list removed from session.");
+        return "redirect:/colors/list.do";
     }
 
-    @PostMapping("/update")
-    public String updateColor(@ModelAttribute Color color) {
-        colorDAO.update(color.getId(), color);
-        return "redirect:/colors/list";
-    }
-
-    @PostMapping("/delete")
-    public String deleteColor(@RequestParam int id) {
-        colorDAO.deleteById(id);
-        return "redirect:/colors/list";
-    }
-
-    private String saveImage(MultipartFile imageFile) throws IOException {
-        String uploadDir = "src/main/webapp/static/images/";
-        String originalFilename = imageFile.getOriginalFilename();
-        String filePath = uploadDir + originalFilename;
-        File dest = new File(filePath);
-        imageFile.transferTo(dest);
-        return "/static/images/" + originalFilename;
+   
+    @RequestMapping(path = "/clearColorsWithStatus.do", method = RequestMethod.GET)
+    public String clearColorList(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        System.out.println("Session status set to complete. All session attributes cleared.");
+        return "redirect:/colors/list.do";
     }
 }

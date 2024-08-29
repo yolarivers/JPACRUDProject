@@ -92,4 +92,9 @@ public class Color {
                 + ", complementaryColor=" + complementaryColor + ", analogousColors=" + analogousColors
                 + ", imageUrl=" + imageUrl + ", meaning=" + meaning + "]";
     }
+
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		
+	}
 }
