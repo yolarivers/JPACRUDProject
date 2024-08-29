@@ -118,15 +118,14 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_interaction`
+-- Table `user_activity`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_interaction` ;
+DROP TABLE IF EXISTS `user_activity` ;
 
-CREATE TABLE IF NOT EXISTS `user_interaction` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` VARCHAR(45) NULL,
-  `interaction_type` VARCHAR(45) NULL,
-  `interaction_details` VARCHAR(45) NULL,
+CREATE TABLE IF NOT EXISTS `user_activity` (
+  `id` INT NOT NULL,
+  `user_id` INT UNSIGNED NULL,
+  `activity_type` VARCHAR(45) CHARACTER SET 'utf8' NULL,
   `timestamp` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -187,6 +186,19 @@ START TRANSACTION;
 USE `colorwheeldb`;
 INSERT INTO `color_scheme` (`id`, `name`, `description`, `user_id`, `created_at`, `updated_at`) VALUES (1, 'Warm Summer', 'A warm and energetic color scheme perfect for summer designs', NULL, NULL, NULL);
 INSERT INTO `color_scheme` (`id`, `name`, `description`, `user_id`, `created_at`, `updated_at`) VALUES (2, 'Fresh Growth', 'A color scheme that evokes the freshness of spring', NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_activity`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `colorwheeldb`;
+INSERT INTO `user_activity` (`id`, `user_id`, `activity_type`, `timestamp`) VALUES (1, 10, 'login', '');
+INSERT INTO `user_activity` (`id`, `user_id`, `activity_type`, `timestamp`) VALUES (2, 15, 'logout', '');
+INSERT INTO `user_activity` (`id`, `user_id`, `activity_type`, `timestamp`) VALUES (3, 12, 'create_color_scheme', '');
+INSERT INTO `user_activity` (`id`, `user_id`, `activity_type`, `timestamp`) VALUES (4, 11, 'update_profile', '');
 
 COMMIT;
 
