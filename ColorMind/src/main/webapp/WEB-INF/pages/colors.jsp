@@ -16,7 +16,7 @@
     <div class="container mt-5">
         <h1 class="text-center font-weight-bold mb-4">Update Color</h1>
         <div class="bg-dark text-white p-5 rounded shadow" style="max-width: 600px; margin: 0 auto;">
-            <form action="<c:url value='/colors/update' />" method="post">
+            <form action="<c:url value='colorsupdate.do' />" method="post">
                 <input type="hidden" name="id" value="${color.id}">
                 <div class="form-group mb-3">
                     <label for="name" class="font-weight-bold">Name:</label>
@@ -36,7 +36,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block font-weight-bold">Update Color</button>
             </form>
-            <a href="<c:url value='/colors/list' />" class="btn btn-secondary btn-block mt-3">Cancel</a>
+            <a href="<c:url value='colorslist.do' />" class="btn btn-secondary btn-block mt-3">Cancel</a>
         </div>
     </div>
 

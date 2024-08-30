@@ -28,7 +28,7 @@ public class ColorController {
 		return "home";
 	}
 
-	@RequestMapping(path = {"colors/list.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = {"colorslist.do"}, method = RequestMethod.GET)
 	public String listColors(Model model, HttpSession session) {
 		List<Color> colors = colorDAO.findAll();
 		model.addAttribute("colors", colors);
@@ -36,7 +36,7 @@ public class ColorController {
 		return "list";
 	}
 
-	@RequestMapping(path = "schemes/list.do", method = RequestMethod.GET)
+	@RequestMapping(path = "schemeslist.do", method = RequestMethod.GET)
 	public String listSchemes(Model model) {
 		System.out.println("List Schemes method called.");
 		return "schemes";
@@ -44,7 +44,7 @@ public class ColorController {
 
 	
 	
-	@RequestMapping(path = "colors/create.do", method = RequestMethod.POST)
+	@RequestMapping(path = "colorscreate.do", method = RequestMethod.POST)
 	public String createColor(@RequestParam("name") String name, @RequestParam("hexCode") Optional<String> hexCode,
 			@RequestParam("rgbValue") Optional<String> rgbValue, Model model) {
 		String finalHexCode = hexCode.orElse("#FFFFFF");

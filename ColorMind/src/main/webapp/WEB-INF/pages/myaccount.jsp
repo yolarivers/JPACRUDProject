@@ -19,7 +19,7 @@
             <c:if test="${!empty sessionScope.loggedInUser}">
                 <p class="text-center mb-4">Welcome, <strong>${sessionScope.loggedInUser.username}</strong></p>
             </c:if>
-            <form action="<c:url value='/updateAccount' />" method="post">
+            <form action="<c:url value='updateAccount.do' />" method="post">
                 <div class="form-group mb-3">
                     <label for="username" class="font-weight-bold">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" value="${sessionScope.loggedInUser.username}" required>
@@ -34,7 +34,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block font-weight-bold">Update Account</button>
             </form>
-            <form action="<c:url value='/deleteAccount' />" method="post" class="mt-3">
+            <form action="<c:url value='deleteAccount.do' />" method="post" class="mt-3">
                 <button type="submit" class="btn btn-danger btn-block font-weight-bold">Delete Account</button>
             </form>
         </div>

@@ -16,7 +16,7 @@
     <div class="container mt-5">
         <h1 class="text-center font-weight-bold mb-4">Create a New Color Palette</h1>
         <div class="bg-dark text-white p-5 rounded shadow" style="max-width: 600px; margin: 0 auto;">
-            <form action="<c:url value='/createPalette' />" method="post">
+            <form action="<c:url value='createPalette.do' />" method="post">
                 <div class="form-group mb-3">
                     <label for="name" class="font-weight-bold">Palette Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>

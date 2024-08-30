@@ -19,14 +19,14 @@
                 <div class="text-center">
                     <h2>Looking for Color Inspiration?</h2>
                     <p>Explore our vast collection of colors and find your next favorite palette.</p>
-                    <a href="colors/list" class="btn btn-light btn-lg">Explore Colors</a>
+                    <a href="colorslist.do" class="btn btn-light btn-lg">Explore Colors</a>
                 </div>
             </div>
             <div class="col-md-6 text-white d-flex align-items-center justify-content-center" style="background-color: #00BFFF; height: 100vh;">
                 <div class="text-center">
                     <h2>Manage Your Color Schemes</h2>
                     <p>Save, edit, and manage your color schemes easily with our tools.</p>
-                    <a href="schemes/list" class="btn btn-light btn-lg">Manage Schemes</a>
+                    <a href="schemeslist.do" class="btn btn-light btn-lg">Manage Schemes</a>
                 </div>
             </div>
         </div>
