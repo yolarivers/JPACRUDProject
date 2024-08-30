@@ -5,27 +5,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Create Color Palette - Color Mind</title>
+    <title>Create Color - Color Mind</title>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="<c:url value='/css/styles.css' />" rel="stylesheet">
 </head>
 <body>
    <jsp:include page="navbar.jsp"></jsp:include>
-
-
+<div class = "container color-list">
+	<c:forEach var="color" items= "${colors}"> 
+	<li>${color.name}</li>
+	</c:forEach>
+</div>
     <div class="container mt-5">
         <h1 class="text-center font-weight-bold mb-4">Create a New Color</h1>
         <div class="bg-dark text-white p-5 rounded shadow" style="max-width: 600px; margin: 0 auto;">
             <form action="<c:url value='colorcreate.do' />" method="post">
                 <div class="form-group mb-3">
-                    <label for="name" class="font-weight-bold">Palette Name:</label>
+                    <label for="name" class="font-weight-bold">Color Name:</label>
                     <input type="text" class="form-control" id="name" name="name" required>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="colors" class="font-weight-bold">Colors (Hex Codes):</label>
-                    <input type="text" class="form-control" id="colors" name="colors" placeholder="#FFFFFF, #000000" required>
+                  <div class="form-group mb-3">
+                    <label for="hexCode" class="font-weight-bold">Hex Code:</label>
+                    <input type="text" class="form-control" id="hexCode" name="hexCode" value="${color.hexCode}" required>
                 </div>
-                <button type="submit" class="btn btn-success btn-block font-weight-bold">Save Palette</button>
+                <div class="form-group mb-3">
+                    <label for="rgbValue" class="font-weight-bold">RGBA:</label>
+                    <input type="text" class="form-control" id="rgbValue" name="rgbValue" value="${color.rgbValue}" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="meaning" class="font-weight-bold">Meaning:</label>
+                    <input type="text" class="form-control" id="meaning" name="meaning" value="${color.meaning}" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-block font-weight-bold">Save Color</button>
             </form>
         </div>
     </div>
