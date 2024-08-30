@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.colormind.dao.UserDAO;
@@ -19,54 +19,63 @@ public class UserController {
 	@Autowired
 	private UserDAO userdao;
 
-	@GetMapping("/signup")
+	@GetMapping("signup")
 	public String signupForm(Model model) {
 		model.addAttribute("user", new User());
 		return "signup";
 	}
 
-	@PostMapping("/signup")
-	public String signup(@ModelAttribute User user) {
+	@PostMapping("signup")
+	public String signup(User user) {
 		userdao.save(user);
-		return "redirect:/login";
+		return "redirect:login";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("login")
 	public String navigateToLogin() {
 		return "login";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("login")
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
 			HttpSession session, Model model) {
 
 		User foundUser = userdao.findByUserNameAndPassword(username, password);
 		if (foundUser != null) {
 			session.setAttribute("loggedInUser", foundUser);
-			return "redirect:/myaccount";
+			return "redirect:myaccount";
 		} else {
 			model.addAttribute("loginError", "Invalid username or password");
 			return "login";
 		}
 	}
+	
+	@RequestMapping("logout")
+	public String logout(
+			HttpSession session, Model model) {
+			session.invalidate();	
+			return "home";
+	
+	}
+	
 
-	@GetMapping("/myaccount")
+	@GetMapping("myaccount")
 	public String viewMyAccount(HttpSession session, Model model) {
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 		if (loggedInUser != null) {
 			model.addAttribute("user", loggedInUser);
 			return "myaccount";
 		} else {
-			return "redirect:/login";
+			return "redirect:login";
 		}
 	}
 
-	@GetMapping("/createPalette")
+	@GetMapping("createPalette")
 	public String showCreatePaletteForm() {
 		return "createPalette";
 	}
 
-	@GetMapping("/list")
+	@GetMapping("list")
 	public String showColorList(Model model) {
 		
 		model.addAttribute("colors", userdao.findAllColors());

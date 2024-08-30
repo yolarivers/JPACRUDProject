@@ -8,6 +8,10 @@ plugins {
 group = 'com.skilldistillery'
 version = '0.0.1-SNAPSHOT'
 
+eclipse.wtp.facet {
+   facet name: 'jst.web', version: '6.0'
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)

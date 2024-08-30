@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.skilldistillery.colormind.entities.User;
 import com.skilldistillery.colormind.entities.Color;
+import com.skilldistillery.colormind.entities.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
-
+import jakarta.transaction.Transactional;
+@Transactional
 @Repository
 public class UserDAOImpl implements UserDAO {
 
@@ -40,7 +41,10 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User save(User user) {
-        em.persist(user);
+        user.setRole("user");
+        user.setEnabled(true);
+    	
+    	em.persist(user);
         em.flush();
         return user;
     }

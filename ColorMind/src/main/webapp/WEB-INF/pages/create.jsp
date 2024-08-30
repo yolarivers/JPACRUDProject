@@ -6,26 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Create Color Palette - Color Mind</title>
-    <link href="<c:url value='/bootstrap/bootstrap.min.css' />" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="<c:url value='/css/styles.css' />" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand font-weight-bold" href="#">Color Mind</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/colors/list">Colors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/logout">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <jsp:include page="navbar.jsp"></jsp:include>
+
 
     <div class="container mt-5">
         <h1 class="text-center font-weight-bold mb-4">Create a New Color Palette</h1>
@@ -48,6 +34,6 @@
         <p>&copy; 2024 Color Mind. All rights reserved.</p>
     </footer>
 
-    <script src="<c:url value='/bootstrap/bootstrap.bundle.min.js' />"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -6,31 +6,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login - Color Mind</title>
-    <link href="<c:url value='/bootstrap/bootstrap.min.css' />" rel="stylesheet">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="<c:url value='/css/styles.css' />" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand font-weight-bold" href="#">Color Mind</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/colors/list">Colors</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/signup">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <jsp:include page="navbar.jsp"></jsp:include>
+
 
     <div class="container-fluid d-flex align-items-center justify-content-center" style="height: 100vh;">
         <div class="bg-dark text-white p-5 rounded shadow" style="max-width: 400px; width: 100%;">
             <h1 class="text-center font-weight-bold mb-4">Login</h1>
-            <form action="login.do" method="post">
+            <form action="login" method="post">
                 <div class="form-group mb-3">
                     <label for="username" class="font-weight-bold">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" required>
@@ -48,6 +34,6 @@
         <p>&copy; 2024 Color Mind. All rights reserved.</p>
     </footer>
 
-    <script src="<c:url value='/bootstrap/bootstrap.bundle.min.js' />"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

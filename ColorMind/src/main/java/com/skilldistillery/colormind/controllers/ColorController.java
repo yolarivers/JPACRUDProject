@@ -28,7 +28,7 @@ public class ColorController {
 		return "home";
 	}
 
-	@RequestMapping(path = {"list.do","/"}, method = RequestMethod.GET)
+	@RequestMapping(path = {"colors/list.do"}, method = RequestMethod.GET)
 	public String listColors(Model model, HttpSession session) {
 		List<Color> colors = colorDAO.findAll();
 		model.addAttribute("colors", colors);
