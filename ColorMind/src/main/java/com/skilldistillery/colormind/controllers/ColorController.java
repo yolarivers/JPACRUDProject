@@ -28,12 +28,12 @@ public class ColorController {
 		return "home";
 	}
 
-	@RequestMapping(path = "colors/list.do", method = RequestMethod.GET)
+	@RequestMapping(path = {"list.do","/"}, method = RequestMethod.GET)
 	public String listColors(Model model, HttpSession session) {
 		List<Color> colors = colorDAO.findAll();
 		model.addAttribute("colors", colors);
 		System.out.println("List Colors method called with " + colors.size() + " colors.");
-		return "colors";
+		return "list";
 	}
 
 	@RequestMapping(path = "schemes/list.do", method = RequestMethod.GET)
@@ -42,12 +42,8 @@ public class ColorController {
 		return "schemes";
 	}
 
-	@RequestMapping(path = "about.do", method = RequestMethod.GET)
-	public String about() {
-		System.out.println("About method called.");
-		return "about";
-	}
-
+	
+	
 	@RequestMapping(path = "colors/create.do", method = RequestMethod.POST)
 	public String createColor(@RequestParam("name") String name, @RequestParam("hexCode") Optional<String> hexCode,
 			@RequestParam("rgbValue") Optional<String> rgbValue, Model model) {

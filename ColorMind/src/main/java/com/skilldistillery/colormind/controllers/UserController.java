@@ -27,21 +27,49 @@ public class UserController {
 
 	@PostMapping("/signup")
 	public String signup(@ModelAttribute User user) {
-		
+		userdao.save(user);
 		return "redirect:/login";
 	}
 
 	@GetMapping("/login")
-	public String navigateTologin() {
+	public String navigateToLogin() {
 		return "login";
 	}
-	@PostMapping("login.do")
-	public String login(@RequestParam("username")String username,@RequestParam("password")String password,
-			HttpSession session) {
+
+	@PostMapping("/login")
+	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
+			HttpSession session, Model model) {
+
+		User foundUser = userdao.findByUserNameAndPassword(username, password);
+		if (foundUser != null) {
+			session.setAttribute("loggedInUser", foundUser);
+			return "redirect:/myaccount";
+		} else {
+			model.addAttribute("loginError", "Invalid username or password");
+			return "login";
+		}
+	}
+
+	@GetMapping("/myaccount")
+	public String viewMyAccount(HttpSession session, Model model) {
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+		if (loggedInUser != null) {
+			model.addAttribute("user", loggedInUser);
+			return "myaccount";
+		} else {
+			return "redirect:/login";
+		}
+	}
+
+	@GetMapping("/createPalette")
+	public String showCreatePaletteForm() {
+		return "createPalette";
+	}
+
+	@GetMapping("/list")
+	public String showColorList(Model model) {
 		
-		User foundUser  = userdao.findByUserNameAndPassword(username, password);
-		session.setAttribute("loggedInUser", foundUser);
-		
-		return "myaccount";
+		model.addAttribute("colors", userdao.findAllColors());
+		return "list";
 	}
 }

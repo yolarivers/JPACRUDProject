@@ -1,148 +1,91 @@
-/* style.css */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Background and Main Container Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f9f9f9;
-    padding-top: 56px; /* Account for fixed navbar */
+    background: linear-gradient(45deg, #ff6b6b, #f5f7fa, #00c9ff, #92fe9d);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: #fff; /* Ensure text is readable */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-/* Navbar */
-.navbar {
-    background-color: #343a40;
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
 }
 
-.navbar .navbar-brand, .navbar .nav-link {
+.container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
     color: #fff;
 }
 
-.navbar .nav-link:hover {
-    color: #adb5bd;
-}
-
-/* Container */
-.container {
-    margin-top: 20px;
-}
-
-/* Buttons */
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-/* Forms */
+/* Form Field Styling */
 .form-control {
-    margin-bottom: 15px;
+    background-color: #f5f7fa;
+    border: none;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .form-group label {
+    color: #fff;
     font-weight: bold;
 }
 
-/* Tables */
-.table {
+/* Button Styling */
+.btn-primary {
+    background-color: #0066cc;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
     width: 100%;
-    margin-bottom: 1rem;
-    color: #212529;
 }
 
-.table th, .table td {
-    padding: 0.75rem;
-    vertical-align: top;
-    border-top: 1px solid #dee2e6;
+.btn-primary:hover {
+    background-color: #004a99;
 }
 
-/* Footer */
-footer {
-    background-color: #343a40;
+/* Navbar Styling */
+.navbar {
+    background-color: #0066cc;
+}
+
+.navbar .nav-link, .navbar .navbar-brand {
     color: #fff;
-    padding: 10px 0;
-    position: fixed;
+    font-weight: bold;
+}
+
+.navbar .nav-link:hover {
+    color: #ddd;
+}
+
+/* Footer Styling */
+.footer {
+    background-color: #0066cc;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
     width: 100%;
+    position: absolute;
     bottom: 0;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .navbar-nav {
-        text-align: center;
-    }
-
-    .container {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    footer {
-        text-align: center;
-    }
-}
-
-/* Colors */
-body {
-    background-color: #f4f4f4;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    color: #333;
-}
-
-p, a, span {
-    color: #666;
-}
-
-/* Color Table */
-.table th {
-    background-color: #007bff;
-    color: white;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 123, 255, 0.05);
-}
-
-/* Focus */
-input:focus, button:focus {
-    outline: 2px solid #007bff;
-}
-
-
-#colors {
-    font-family: monospace;
-    letter-spacing: 1px;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }
