@@ -44,7 +44,6 @@ class UserTest {
     @Test
     void test_User_entity_mapping() {
         assertNotNull(user);
-//        assertEquals("adminUser", user.getUsername());
-//        assertEquals("ADMIN", user.getRole());
+
     }
 }

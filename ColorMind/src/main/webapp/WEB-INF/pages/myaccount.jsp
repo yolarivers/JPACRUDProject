@@ -1,33 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - ColorMind</title>
-    <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css' />">
-    <meta name="description" content="Manage your ColorMind account. Update your information or delete your account.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>My Account - Color Mind</title>
+    <link href="<c:url value='/bootstrap/bootstrap.min.css' />" rel="stylesheet">
+    <link href="<c:url value='/css/styles.css' />" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="<c:url value='/home.jsp' />">ColorMind</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/home.jsp' />">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/colors.jsp' />">Colors</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/account.jsp' />">Account</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<c:url value='/logout' />">Logout</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Color Mind</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/colors/list">Colors</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+<c:if test="${!empty sessionScope.loggedInUser}">
+<p>${sessionScope.loggedInUser.username} </p>
 
+</c:if>
     <div class="container mt-5">
         <h1>My Account</h1>
         <form action="<c:url value='/updateAccount' />" method="post">
@@ -50,15 +52,10 @@
         </form>
     </div>
 
-    <footer class="footer bg-light text-center mt-5 py-3">
-        <div class="container">
-            <span class="text-muted">&copy; <%= java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) %> ColorMind. All rights reserved.</span>
-        </div>
+    <footer class="bg-light text-dark text-center py-3 mt-5">
+        <p>&copy; 2024 Color Mind. All rights reserved.</p>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" 
-            crossorigin="anonymous"></script>
+    <script src="<c:url value='/bootstrap/bootstrap.bundle.min.js' />"></script>
 </body>
 </html>

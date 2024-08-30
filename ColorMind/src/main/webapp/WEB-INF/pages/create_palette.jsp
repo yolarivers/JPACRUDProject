@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Sign Up - Color Mind</title>
+    <title>Create Color Palette - Color Mind</title>
     <link href="<c:url value='/bootstrap/bootstrap.min.css' />" rel="stylesheet">
     <link href="<c:url value='/css/styles.css' />" rel="stylesheet">
 </head>
@@ -20,28 +20,24 @@
                     <a class="nav-link" href="/colors/list">Colors</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/logout">Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container mt-5">
-        <h1>Sign Up</h1>
-        <form action="<c:url value='/signup' />" method="post">
+        <h1>Create a New Color Palette</h1>
+        <form action="<c:url value='/createPalette' />" method="post">
             <div class="form-group mb-3">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="name">Palette Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group mb-3">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label for="colors">Colors (Hex Codes):</label>
+                <input type="text" class="form-control" id="colors" name="colors" placeholder="#FFFFFF, #000000" required>
             </div>
-            <div class="form-group mb-3">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <button type="submit" class="btn btn-success">Save Palette</button>
         </form>
     </div>
 
