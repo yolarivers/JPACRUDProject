@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.colormind.entities.Color;
+import com.skilldistillery.colormind.entities.User;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
-
-import com.skilldistillery.colormind.entities.Color;
 
 @Service
 @Transactional
@@ -28,7 +29,9 @@ public class ColorDAOImpl implements ColorDAO {
     }
 
     @Override
-    public Color create(Color newColor) {
+    public Color create(Color newColor,int userId) {
+    	User user = em.find(User.class, userId);
+    	newColor.setUser(user);
         em.persist(newColor);
         return newColor;
     }

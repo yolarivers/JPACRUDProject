@@ -13,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.skilldistillery.colormind.dao.ColorDAO;
 import com.skilldistillery.colormind.entities.Color;
+import com.skilldistillery.colormind.entities.User;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -22,13 +23,13 @@ public class ColorController {
 	@Autowired
 	private ColorDAO colorDAO;
 
-	@RequestMapping(path = {"home.do","/"}, method = RequestMethod.GET)
+	@RequestMapping(path = { "home.do", "/" }, method = RequestMethod.GET)
 	public String home(Model model) {
 		System.out.println("Home method called.");
 		return "home";
 	}
 
-	@RequestMapping(path = {"colorslist.do"}, method = RequestMethod.GET)
+	@RequestMapping(path = { "colorslist.do" }, method = RequestMethod.GET)
 	public String listColors(Model model, HttpSession session) {
 		List<Color> colors = colorDAO.findAll();
 		model.addAttribute("colors", colors);
@@ -42,31 +43,31 @@ public class ColorController {
 		return "schemes";
 	}
 
-	
-	
-	@RequestMapping(path = "colorscreate.do", method = RequestMethod.POST)
-	public String createColor(@RequestParam("name") String name, @RequestParam("hexCode") Optional<String> hexCode,
-			@RequestParam("rgbValue") Optional<String> rgbValue, Model model) {
-		String finalHexCode = hexCode.orElse("#FFFFFF");
-		String finalRgbValue = rgbValue.orElse("255,255,255");
+	@RequestMapping(path = "colorcreate.do", method = RequestMethod.POST)
+	public String createColor(Color color, Model model, HttpSession session) {
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+		if (loggedInUser != null) {
+			color = colorDAO.create(color, loggedInUser.getId());
+			return "redirect:colorslist.do";
+			
+		} else {
+			return "redirect:login";
+		}
 
-		return finalRgbValue;
+		
 	}
-
-	
-	
 
 	@RequestMapping(path = "clearColors.do", method = RequestMethod.GET)
 	public String clearColorList(HttpSession session) {
 		session.removeAttribute("colorList");
 		System.out.println("Color list removed from session.");
-		return "redirect:/colors/list.do";
+		return "redirect:colorslist.do";
 	}
 
 	@RequestMapping(path = "clearColorsWithStatus.do", method = RequestMethod.GET)
 	public String clearColorList(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		System.out.println("Session status set to complete. All session attributes cleared.");
-		return "redirect:/colors/list.do";
+		return "redirect:colorslist.do";
 	}
 }

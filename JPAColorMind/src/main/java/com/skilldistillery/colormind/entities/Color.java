@@ -11,7 +11,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,10 +36,19 @@ public class Color {
 
     @ManyToMany(mappedBy = "colors", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<ColorScheme> colorSchemes = new ArrayList<>();
+   @ManyToOne 
+   @JoinColumn(name = "user_id")
+   private User user;
 
-   
+    public User getUser() {
+	return user;
+}
 
-    public int getId() {
+public void setUser(User user) {
+	this.user = user;
+}
+
+	public int getId() {
         return id;
     }
 

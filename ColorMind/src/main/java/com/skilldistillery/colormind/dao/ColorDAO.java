@@ -8,7 +8,7 @@ public interface ColorDAO {
 
 	List<Color> findAll();
 
-	Color create(Color newColor);
+	Color create(Color newColor, int userId);
 
 	Color update(int colorId, Color color);
 
