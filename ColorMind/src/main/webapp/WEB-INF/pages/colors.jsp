@@ -18,16 +18,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/WEB-INF/pages/index.jsp">Home</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/home.do">Home</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="#">Colors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Schemes</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/schemes/list.do">Schemes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/about.do">About</a>
             </li>
         </ul>
     </div>
@@ -58,9 +58,9 @@
                         <div id="colorPreview" style="background-color: ${color.hexCode}; width: 50px; height: 50px;"></div>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/colors/detail?id=${color.id}" class="btn btn-info btn-sm">View</a>
-                        <a href="${pageContext.request.contextPath}/colors/update?id=${color.id}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="${pageContext.request.contextPath}/colors/delete?id=${color.id}" class="btn btn-danger btn-sm">Delete</a>
+                        <a href="${pageContext.request.contextPath}/colors/detail.do?id=${color.id}" class="btn btn-info btn-sm">View</a>
+                        <a href="${pageContext.request.contextPath}/colors/update.do?id=${color.id}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="${pageContext.request.contextPath}/colors/delete.do?id=${color.id}" class="btn btn-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

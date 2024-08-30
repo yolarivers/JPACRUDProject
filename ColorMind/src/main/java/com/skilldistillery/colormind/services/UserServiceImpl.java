@@ -5,26 +5,26 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.colormind.entities.User;
-import com.skilldistillery.colormind.repositories.UserRepository;
+import com.skilldistillery.colormind.repositories.UserActivityRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserActivityRepository userActivityRepository;
 
 	@Autowired
-	private PasswordEncoder passwordEncoder
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public User findByUsername(String username) {
-		return userRepository.findByUsername(username);
+		return userActivityRepository.findByUsername(username);
 	}
 
 	@Override
 	public User createUser(User user) {
 		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		return userRepository.save(user);
+		return userActivityRepository.save(user);
 	}
 }

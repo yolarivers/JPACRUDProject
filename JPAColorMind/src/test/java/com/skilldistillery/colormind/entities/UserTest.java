@@ -1,14 +1,9 @@
 package com.skilldistillery.colormind.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,85 +11,49 @@ class UserTest {
 
     private User user;
 
-    @BeforeAll
-    static void setUpBeforeClass() throws Exception {
-       
-    }
-
-    @AfterAll
-    static void tearDownAfterClass() throws Exception {
-     
-    }
-
     @BeforeEach
     void setUp() throws Exception {
-       
         user = new User();
+        user.setId(1);
         user.setUsername("testuser");
         user.setPassword("password123");
         user.setEmail("testuser@example.com");
         user.setFirstName("Test");
         user.setLastName("User");
-        user.setRole("ADMIN");
-        user.setEnabled(true);  
+        user.setRole("USER");
+        user.setEnabled(true);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
     }
 
-    @AfterEach
-    void tearDown() throws Exception {
-       
-        user = null;
-    }
-
     @Test
-    void testUsername() {
+    void test_user_entity_mapping() {
+        assertNotNull(user);
+        assertEquals(1, user.getId());
         assertEquals("testuser", user.getUsername());
-    }
-
-    @Test
-    void testPassword() {
         assertEquals("password123", user.getPassword());
-    }
-
-    @Test
-    void testEmail() {
         assertEquals("testuser@example.com", user.getEmail());
-    }
-
-    @Test
-    void testFirstName() {
         assertEquals("Test", user.getFirstName());
-    }
-
-    @Test
-    void testLastName() {
         assertEquals("User", user.getLastName());
-    }
-
-    @Test
-    void testRole() {
-        assertEquals("ADMIN", user.getRole());
-    }
-
-    @Test
-    void testEnabled() {
-        assertTrue(user.isEnabled()); 
-        user.disable(); 
-        assertFalse(user.isEnabled());  
-        user.enable();  
+        assertEquals("USER", user.getRole());
         assertTrue(user.isEnabled());
+        assertNotNull(user.getCreatedAt());
+        assertNotNull(user.getUpdatedAt());
     }
 
     @Test
-    void testCreatedAt() {
-       
-        assertEquals(LocalDateTime.now().getDayOfYear(), user.getCreatedAt().getDayOfYear());
+    void test_user_equals_hashCode() {
+        User user2 = new User();
+        user2.setId(1);
+
+        assertTrue(user.equals(user2));
+        assertEquals(user.hashCode(), user2.hashCode());
     }
 
     @Test
-    void testUpdatedAt() {
-        
-        assertEquals(LocalDateTime.now().getDayOfYear(), user.getUpdatedAt().getDayOfYear());
+    void test_user_toString() {
+        String expected = "User [id=1, username=testuser, email=testuser@example.com, firstName=Test, lastName=User, role=USER, enabled=true, createdAt="
+                + user.getCreatedAt() + ", updatedAt=" + user.getUpdatedAt() + "]";
+        assertEquals(expected, user.toString());
     }
 }

@@ -1,7 +1,7 @@
 package com.skilldistillery.colormind.controllers;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,80 +19,71 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class ColorController {
 
-    @Autowired
-    private ColorDAO colorDAO;
+	@Autowired
+	private ColorDAO colorDAO;
 
-    
-    @RequestMapping(path = "home.do", method = RequestMethod.GET)
-    public String home(Model model) {
-        System.out.println("Home method called."); 
-        return "home";
-    }
+	@RequestMapping(path = "home.do", method = RequestMethod.GET)
+	public String home(Model model) {
+		System.out.println("Home method called.");
+		return "home";
+	}
 
-  
-    @RequestMapping(path = "/colors/list.do", method = RequestMethod.GET)
-    public String listColors(Model model, HttpSession session) {
-        List<Color> colors = colorDAO.findAll();
-        model.addAttribute("colors", colors);
-        session.setAttribute("colorList", colors); 
-        System.out.println("List Colors method called with " + colors.size() + " colors."); 
-        return "colors";  
-    }
+	@RequestMapping(path = "colors/list.do", method = RequestMethod.GET)
+	public String listColors(Model model, HttpSession session) {
+		List<Color> colors = colorDAO.findAll();
+		model.addAttribute("colors", colors);
+		session.setAttribute("colorList", colors);
+		System.out.println("List Colors method called with " + colors.size() + " colors.");
+		return "colors";
+	}
 
-    
-    @RequestMapping(path = "/schemes/list.do", method = RequestMethod.GET)
-    public String listSchemes(Model model, HttpSession session) {
-        System.out.println("List Schemes method called."); 
-        return "schemes";  
-    }
+	@RequestMapping(path = "schemes/list.do", method = RequestMethod.GET)
+	public String listSchemes(Model model, HttpSession session) {
+		System.out.println("List Schemes method called.");
+		return "schemes";
+	}
 
-    
-    @RequestMapping(path = "/about.do", method = RequestMethod.GET)
-    public String about() {
-        System.out.println("About method called."); 
-        return "about";  
-    }
+	@RequestMapping(path = "about.do", method = RequestMethod.GET)
+	public String about() {
+		System.out.println("About method called.");
+		return "about";
+	}
 
-    
-    @RequestMapping(path = "/colors/create.do", method = RequestMethod.POST)
-    public String createColor(@RequestParam("name") String name, 
-                              @RequestParam("hexCode") String hexCode, 
-                              @RequestParam("rgbValue") String rgbValue, 
-                              HttpSession session) {
-        Color newColor = new Color();
-        newColor.setName(name);
-        newColor.setHexCode(hexCode);
-        newColor.setRgbValue(rgbValue);
+	@RequestMapping(path = "colors/create.do", method = RequestMethod.POST)
+	public String createColor(@RequestParam("name") String name, @RequestParam("hexCode") String hexCode,
+			@RequestParam("rgbValue") String rgbValue, HttpSession session) {
+		Color newColor = new Color();
+		newColor.setName(name);
+		newColor.setHexCode(hexCode);
+		newColor.setRgbValue(rgbValue);
 
-        colorDAO.create(newColor);
-        
-        @SuppressWarnings("unchecked")
-        List<Color> colorList = (List<Color>) session.getAttribute("colorList");
-        if (colorList != null) {
-            colorList.add(newColor);
-        } else {
-            colorList = new ArrayList<>();
-            colorList.add(newColor);
-            session.setAttribute("colorList", colorList); 
-        }
+		colorDAO.create(newColor);
 
-        System.out.println("Create Color method called. Color: " + newColor); 
-        return "redirect:/colors/list.do";
-    }
+		@SuppressWarnings("unchecked")
+		List<Color> colorList = (List<Color>) session.getAttribute("colorList");
+		if (colorList != null) {
+			colorList.add(newColor);
+		} else {
+			colorList = new ArrayList<>();
+			colorList.add(newColor);
+			session.setAttribute("colorList", colorList);
+		}
 
-    
-    @RequestMapping(path = "/clearColors.do", method = RequestMethod.GET)
-    public String clearColorList(HttpSession session) {
-        session.removeAttribute("colorList");
-        System.out.println("Color list removed from session.");
-        return "redirect:/colors/list.do";
-    }
+		System.out.println("Create Color method called. Color: " + newColor);
+		return "redirect:/colors/list.do";
+	}
 
-   
-    @RequestMapping(path = "/clearColorsWithStatus.do", method = RequestMethod.GET)
-    public String clearColorList(SessionStatus sessionStatus) {
-        sessionStatus.setComplete();
-        System.out.println("Session status set to complete. All session attributes cleared.");
-        return "redirect:/colors/list.do";
-    }
+	@RequestMapping(path = "clearColors.do", method = RequestMethod.GET)
+	public String clearColorList(HttpSession session) {
+		session.removeAttribute("colorList");
+		System.out.println("Color list removed from session.");
+		return "redirect:/colors/list.do";
+	}
+
+	@RequestMapping(path = "clearColorsWithStatus.do", method = RequestMethod.GET)
+	public String clearColorList(SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		System.out.println("Session status set to complete. All session attributes cleared.");
+		return "redirect:/colors/list.do";
+	}
 }

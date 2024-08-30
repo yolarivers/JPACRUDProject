@@ -1,76 +1,98 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Details</title>
-    
-   
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Detail - Color Mind</title>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand"
+			href="${pageContext.request.contextPath}/home.do">Color Mind</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link"
+					href="${pageContext.request.contextPath}/home.do">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="${pageContext.request.contextPath}/colors/list.do">Colors</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="${pageContext.request.contextPath}/schemes/list.do">Schemes</a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					href="${pageContext.request.contextPath}/about.do">About</a></li>
+			</ul>
+		</div>
+	</nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Color Mind</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/WEB-INF/pages/index.jsp">Home</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/colors/list">Colors</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Schemes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+	<div class="container mt-5">
+		<h1 class="display-4 text-center">Color Details</h1>
 
-<div class="container mt-5">
-    <h1 class="display-4 text-center">Color Details</h1>
-    
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div id="colorPreview" class="rounded" style="background-color: ${color.hexCode}; height: 200px; border: 1px solid #000;"></div>
-        </div>
-        <div class="col-md-8">
-            <h2>${color.name}</h2>
-            <p><strong>Hex Code:</strong> ${color.hexCode}</p>
-            <p><strong>RGB Value:</strong> ${color.rgbValue}</p>
-            <p><strong>Meaning:</strong> ${color.meaning}</p>
-            <p><strong>Shade:</strong> ${color.shade}</p>
-            <p><strong>Tint:</strong> ${color.tint}</p>
-            <h3 class="mt-4">Associated Schemes</h3>
-            <ul class="list-group">
-                <c:forEach var="scheme" items="${color.schemes}">
-                    <li class="list-group-item">${scheme.name}</li>
-                </c:forEach>
-            </ul>
-            <div class="mt-4">
-                <a href="${pageContext.request.contextPath}/colors/update?id=${color.id}" class="btn btn-warning">Edit</a>
-                <a href="${pageContext.request.contextPath}/colors/delete?id=${color.id}" class="btn btn-danger">Delete</a>
-            </div>
-        </div>
-    </div>
-</div>
+		<div class="card mt-4">
+			<div class="card-header">
+				<h2>${color.name}</h2>
+			</div>
+			<div class="card-body">
+				<p>
+					<strong>Hex Code:</strong> ${color.hexCode}
+				</p>
+				<p>
+					<strong>RGB Value:</strong> ${color.rgbValue}
+				</p>
+				<div class="color-preview"
+					style="background-color: ${color.hexCode}; height: 100px; width: 100px;"></div>
+			</div>
+		</div>
 
-<footer class="footer bg-light mt-5 py-3">
-    <div class="container text-center">
-        <span class="text-muted">&copy; 2024 Color Mind. All rights reserved.</span>
-    </div>
-</footer>
+		<div class="mt-4">
+			<a class="btn btn-primary"
+				href="${pageContext.request.contextPath}/colors/edit.do?id=${color.id}">Edit
+				Color</a>
 
-<!-- Bootstrap JS and dependencies -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+			<!-- Changed from link to form for deletion -->
+			<form action="${pageContext.request.contextPath}/colors/delete.do"
+				method="post" style="display: inline;">
+				<input type="hidden" name="id" value="${color.id}">
+				<button type="submit" class="btn btn-danger">Delete Color</button>
+			</form>
+
+			<a class="btn btn-secondary"
+				href="${pageContext.request.contextPath}/colors/list.do">Back to
+				Colors</a>
+		</div>
+	</div>
+
+	<footer class="footer bg-light mt-5 py-3">
+		<div class="container text-center">
+			<span class="text-muted">&copy; 2024 Color Mind. All rights
+				reserved.</span>
+		</div>
+	</footer>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
 </body>
 </html>

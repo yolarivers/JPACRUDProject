@@ -16,9 +16,9 @@ public class UserActivityService {
 
 	public void logActivity(int userId, String activityType) {
 		UserActivity activity = new UserActivity();
-		activity.setUserId(userId); // Set the userId correctly
-		activity.setActivityType(activityType);
-		activity.setTimestamp(LocalDateTime.now()); // Pass LocalDateTime instead of String
-		activityRepo.save(activity);
+		activity.setUserId(userId); 
+		activity.setActivityType(activityType); 
+		activity.setTimestamp(LocalDateTime.now()); 
+		activityRepo.save(activity); 
 	}
 }
