@@ -8,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Update Color - Color Mind</title>
 <link
-	href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/styles.css"
 	rel="stylesheet">
@@ -22,7 +22,7 @@
 	<div class="container mt-5">
 		<h1>Update Color</h1>
 
-		<!-- Display error message if update fails -->
+		
 		<c:if test="${not empty error}">
 			<div class="alert alert-danger" role="alert">${error}</div>
 		</c:if>

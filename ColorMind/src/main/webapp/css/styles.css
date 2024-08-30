@@ -1,139 +1,148 @@
+/* style.css */
 
-
-
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    font-family: 'Verdana', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    padding-top: 56px; /* Account for fixed navbar */
 }
 
-
+/* Navbar */
 .navbar {
-    background-color: var(--primary-color);
-    font-weight: bold;
+    background-color: #343a40;
 }
 
-.navbar-brand {
-    color: var(--secondary-color);
-    font-size: 1.8rem;
+.navbar .navbar-brand, .navbar .nav-link {
+    color: #fff;
 }
 
-.navbar-nav .nav-link {
-    color: var(--background-color);
-    font-weight: bold;
-    margin-right: 10px;
+.navbar .nav-link:hover {
+    color: #adb5bd;
 }
 
-.navbar-nav .nav-link:hover {
-    color: var(--accent-color);
+/* Container */
+.container {
+    margin-top: 20px;
 }
 
+/* Buttons */
 .btn-primary {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    color: var(--background-color);
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Forms */
+.form-control {
+    margin-bottom: 15px;
+}
+
+.form-group label {
     font-weight: bold;
 }
 
-.btn-primary:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
+/* Tables */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
 }
 
-
-.card {
-    border: 2px solid var(--primary-color);
-    border-radius: 10px;
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
 }
 
-.card-header {
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    font-size: 1.5rem;
-    font-weight: bold;
+/* Footer */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 
-.card-body {
-    background-color: var(--background-color);
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    footer {
+        text-align: center;
+    }
 }
 
-
-.footer {
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    padding: 20px 0;
-    font-size: 1rem;
-}
-
-.footer span {
-    color: var(--secondary-color);
-    font-weight: bold;
+/* Colors */
+body {
+    background-color: #f4f4f4;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: var(--primary-color);
-    font-family: 'Trebuchet MS', sans-serif;
-    font-weight: bold;
+    color: #333;
 }
 
-.form-control {
-    border: 2px solid var(--primary-color);
-    border-radius: 5px;
+p, a, span {
+    color: #666;
 }
 
-
-
-
-
-a {
-    color: var(--secondary-color);
-    font-weight: bold;
+/* Color Table */
+.table th {
+    background-color: #007bff;
+    color: white;
 }
 
-a:hover {
-    color: var(--accent-color);
-    text-decoration: none;
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.05);
 }
 
-
-.bg-primary {
-    background-color: var(--primary-color) !important;
-    color: var(--background-color) !important;
-}
-
-.bg-secondary {
-    background-color: var(--secondary-color) !important;
-    color: var(--background-color) !important;
+/* Focus */
+input:focus, button:focus {
+    outline: 2px solid #007bff;
 }
 
 
-.section-title {
-    font-size: 2.5rem;
-    color: var(--secondary-color);
-    margin-bottom: 30px;
-    text-align: center;
+#colors {
+    font-family: monospace;
+    letter-spacing: 1px;
 }
 
-.color-preview {
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    margin: 10px auto;
-    background-color: var(--accent-color);
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-
-.text-primary {
-    color: var(--primary-color) !important;
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-.text-secondary {
-    color: var(--secondary-color) !important;
+::-webkit-scrollbar-thumb {
+    background: #888;
 }
 
-.text-accent {
-    color: var(--accent-color) !important;
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

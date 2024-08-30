@@ -8,7 +8,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Color List - Color Mind</title>
 <link
-	href="${pageContext.request.contextPath}/bootstrap/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/styles.css"
 	rel="stylesheet">
