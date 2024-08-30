@@ -134,7 +134,7 @@ public class ColorScheme {
         this.updatedDate = updatedDate;
     }
 
-    // Equals and HashCode based on ID for entity comparison
+   
 
     @Override
     public int hashCode() {
@@ -151,7 +151,6 @@ public class ColorScheme {
         return id == other.id;
     }
 
-    // toString method for debugging and logging
 
     @Override
     public String toString() {
