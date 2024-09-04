@@ -7,8 +7,7 @@
 ## Table of Contents
 
 - [Usage](#usage)
-- [Features](#features)
-- 
+- [Features](#features
 - [Technologies](#technologies)
 - [Author](#author)
 
