@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+
 @Transactional
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -28,8 +29,21 @@ public class UserDAOImpl implements UserDAO {
                      .setParameter("pw", password)
                      .getSingleResult();
         } catch (NoResultException e) {
-       
-            System.out.println("User not found");
+            System.out.println("User not found with given username and password");
+        }
+        return user;
+    }
+
+    @Override
+    public User findByUserName(String username) {
+        String query = "SELECT u FROM User u WHERE u.username = :un";
+        User user = null;
+        try {
+            user = em.createQuery(query, User.class)
+                     .setParameter("un", username)
+                     .getSingleResult();
+        } catch (NoResultException e) {
+            System.out.println("User not found with given username");
         }
         return user;
     }
@@ -41,10 +55,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User save(User user) {
-        user.setRole("user");
-        user.setEnabled(true);
-    	
-    	em.persist(user);
+        user.setRole("user");  
+        user.setEnabled(true); 
+        em.persist(user);
         em.flush();
         return user;
     }

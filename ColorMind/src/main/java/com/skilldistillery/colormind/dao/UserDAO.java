@@ -1,13 +1,14 @@
 package com.skilldistillery.colormind.dao;
 
 import java.util.List;
-
 import com.skilldistillery.colormind.entities.Color;
 import com.skilldistillery.colormind.entities.User;
 
 public interface UserDAO {
 
-    User findByUserNameAndPassword(String username, String password);
+    User findByUserName(String username);  
+
+    User findByUserNameAndPassword(String username, String password);  
 
     User findById(int id);
 
@@ -19,4 +20,5 @@ public interface UserDAO {
 
     List<User> findAllUsers();
 
-    List<Color> findAllColors();  }
+    List<Color> findAllColors();
+}

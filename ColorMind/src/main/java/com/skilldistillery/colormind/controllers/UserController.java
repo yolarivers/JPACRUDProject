@@ -26,7 +26,22 @@ public class UserController {
 	}
 
 	@PostMapping("signup")
-	public String signup(User user) {
+	public String signup(@RequestParam("password") String password,
+			@RequestParam("confirmPassword") String confirmPassword, User user, Model model) {
+		
+		if (!password.equals(confirmPassword)) {
+			model.addAttribute("error", "Passwords do not match.");
+			return "signup";
+		}
+
+		if (!isValidPassword(password)) {
+			model.addAttribute("error",
+					"Password must be at least 8 characters long and contain at least one number and one special character.");
+			return "signup";
+		}
+
+		
+		user.setPassword(password); 
 		userdao.save(user);
 		return "redirect:login";
 	}
@@ -40,24 +55,31 @@ public class UserController {
 	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
 			HttpSession session, Model model) {
 
-		User foundUser = userdao.findByUserNameAndPassword(username, password);
-		if (foundUser != null) {
-			session.setAttribute("loggedInUser", foundUser);
-			return "redirect:myaccount";
-		} else {
-			model.addAttribute("loginError", "Invalid username or password");
+		
+		User foundUser = userdao.findByUserName(username);
+
+		if (foundUser == null) {
+			
+			model.addAttribute("loginError", "Account does not exist. Please sign up.");
 			return "login";
 		}
-	}
+
 	
+		if (!foundUser.getPassword().equals(password)) {
+			model.addAttribute("loginError", "Incorrect password. Please try again.");
+			return "login";
+		}
+
+		
+		session.setAttribute("loggedInUser", foundUser);
+		return "redirect:myaccount";
+	}
+
 	@RequestMapping("logout")
-	public String logout(
-			HttpSession session, Model model) {
-			session.invalidate();	
-			return "home";
-	
+	public String logout(HttpSession session, Model model) {
+		session.invalidate();
+		return "redirect:home";
 	}
-	
 
 	@GetMapping("myaccount")
 	public String viewMyAccount(HttpSession session, Model model) {
@@ -77,8 +99,14 @@ public class UserController {
 
 	@GetMapping("list")
 	public String showColorList(Model model) {
-		
 		model.addAttribute("colors", userdao.findAllColors());
 		return "list";
+	}
+
+	
+	private boolean isValidPassword(String password) {
+		
+		String passwordPattern = "^(?=.*\\d)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$";
+		return password.matches(passwordPattern);
 	}
 }

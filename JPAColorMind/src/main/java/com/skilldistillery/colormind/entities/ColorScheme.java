@@ -46,7 +46,7 @@ public class ColorScheme {
     @Column(name = "updated_date", nullable = false)
     private LocalDateTime updatedDate;
 
-    // Constructors
+  
     public ColorScheme() {
         this.colors = new ArrayList<>();  // Ensures list is initialized
     }
@@ -60,7 +60,7 @@ public class ColorScheme {
         this.updatedDate = updatedDate;
     }
 
-    // Utility methods
+   
     public void addColor(Color color) {
         colors.add(color);
         color.getColorSchemes().add(this);
@@ -76,7 +76,7 @@ public class ColorScheme {
     }
 
 
-    // Getters and Setters
+  
 
     public int getId() {
         return id;
